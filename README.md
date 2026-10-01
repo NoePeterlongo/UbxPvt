@@ -43,7 +43,7 @@ Serial1.begin(115200, SERIAL_8N1, /*rx*/ 2, /*tx*/ 3); // ESP32 example
 
 ```ini
 lib_deps =
-    UbxPvt = file:///path/to/this/repo   ; or a git URL
+    git@github.com:NoePeterlongo/UbxPvt.git   ; or a git URL
 ```
 
 **Arduino IDE**: download or clone this repository into your `libraries/`
