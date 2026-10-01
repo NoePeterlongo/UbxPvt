@@ -1,0 +1,44 @@
+#######################################
+# Syntax Coloring Map for UbxPvt
+#######################################
+
+# Classes
+UbxPvt				KEYWORD1
+UbxPvtParser		KEYWORD1
+UbxNavPvt			KEYWORD1
+UbxFrameHandler		KEYWORD1
+
+# Methods
+poll				KEYWORD2
+pvt					KEYWORD2
+parser				KEYWORD2
+onFrame				KEYWORD2
+write				KEYWORD2
+data				KEYWORD2
+reset				KEYWORD2
+decodedCount		KEYWORD2
+checksumErrorCount	KEYWORD2
+skippedMessageCount	KEYWORD2
+syncCount			KEYWORD2
+begin				KEYWORD2
+
+# Accessors
+validDate			KEYWORD2
+validTime			KEYWORD2
+fullyResolved		KEYWORD2
+fixOk				KEYWORD2
+hasFix				KEYWORD2
+has3DFix			KEYWORD2
+longitudeDeg		KEYWORD2
+latitudeDeg			KEYWORD2
+altitudeMsl			KEYWORD2
+groundSpeedMps		KEYWORD2
+headingDeg			KEYWORD2
+
+# Constants
+UBX_PVT_NO_FIX			LITERAL1
+UBX_PVT_DEAD_RECKONING	LITERAL1
+UBX_PVT_FIX_2D			LITERAL1
+UBX_PVT_FIX_3D			LITERAL1
+UBX_PVT_GNSS_PLUS_DR	LITERAL1
+UBX_PVT_TIME_ONLY		LITERAL1
