@@ -72,11 +72,16 @@ examples/NavSatMonitor/   demo: NAV-SAT parser built on the onFrame() handler
 ```cpp
 #include <UbxPvt.h>
 
-Serial1.begin(115200, SERIAL_8N1, /*rx*/ 2, /*tx*/ 3);
 UbxPvt gps(Serial1);
 
+void setup() {
+  Serial.begin(115200);
+  // Pin routing is the sketch's job, using whatever the core provides:
+  Serial1.begin(115200, SERIAL_8N1, /*rx=*/2, /*tx=*/3); // ESP32 example
+}
+
 void loop() {
-  if (gps.poll()) {                 // true: a new NAV-PVT was just decoded
+  if (gps.poll()) { // true: a new NAV-PVT was just decoded
     const UbxNavPvt &pvt = gps.pvt();
     if (pvt.has3DFix()) {
       Serial.printf("lat %.7f lon %.7f alt %.1f m speed %.2f m/s %02u:%02u:%02u UTC\n",
@@ -87,7 +92,8 @@ void loop() {
 }
 ```
 
-Decoding other frames through the generic handler:
+To decode other message types as well, add a frame handler and register it in
+`setup()` — see `examples/NavSatMonitor/` for a complete NAV-SAT decoder:
 
 ```cpp
 void onFrame(uint8_t msgClass, uint8_t msgId, const uint8_t *payload,
@@ -95,7 +101,8 @@ void onFrame(uint8_t msgClass, uint8_t msgId, const uint8_t *payload,
   if (msgClass == 0x01 && msgId == 0x35) { /* NAV-SAT: constellation */ }
 }
 
-gps.onFrame(onFrame);      // gps.onFrame(nullptr) to unregister
+// in setup(), after Serial1.begin():
+gps.onFrame(onFrame); // gps.onFrame(nullptr) to unregister
 ```
 
 ## Examples
